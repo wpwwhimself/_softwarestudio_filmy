@@ -1,4 +1,4 @@
-namespace VideoApp.Models
+namespace api.Models
 {
   public class Video
   {
@@ -6,7 +6,7 @@ namespace VideoApp.Models
     public int ImportId { get; set; }
     public string Title { get; set; }
     public string Director { get; set; }
-    public string Year { get; set; }
-    public string Rate { get; set; }
+    public int Year { get; set; }
+    public double Rate { get; set; }
   }
 }
