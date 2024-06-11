@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net.Http;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,8 +17,11 @@ namespace frontend;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private readonly HttpClient _httpClient;
+
     public MainWindow()
     {
         InitializeComponent();
+        _httpClient = new HttpClient();
     }
 }

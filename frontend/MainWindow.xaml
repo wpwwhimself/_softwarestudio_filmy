@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:frontend"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="FilmFetcher" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
+        <TextBlock Text="FilmFetcher | Videos" FontSize="24" FontWeight="Bold" Margin="10" />
+        <Button Content="Add" Width="100" Margin="10" Grid.Row="1" />
+        <DataGrid x:name="VideoDataGrid" AutoGenerateColumns="False" Grid.Row="2" Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
