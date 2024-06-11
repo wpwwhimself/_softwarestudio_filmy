@@ -72,19 +72,37 @@ public partial class MainWindow : Window
             video.Year,
             video.Rate
         );
-        
+
         if (editorWindow.ShowDialog() == true)
         {
             LoadVideos();
         }
     }
 
-    private void DeleteButton_Click(object sender, RoutedEventArgs e)
+    private async void DeleteButton_Click(object sender, RoutedEventArgs e)
     {
         var video = (sender as Button).DataContext as Video;
         if (video != null)
         {
-            MessageBox.Show($"Delete button clicked for {video.Title}");
+            MessageBoxResult res = MessageBox.Show(
+                $"Delete film {video.Title}?",
+                "Confirm",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (res == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    await _httpClient.DeleteAsync($"http://localhost:5043/api/Videos/{video.Id}");
+                    LoadVideos();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+            }
         }
     }
 }

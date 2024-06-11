@@ -28,7 +28,7 @@ namespace frontend
     {
       InitializeComponent();
       Title = $"Edit film: {title}";
-      this.Id = id;
+      Id = id;
 
       TitleTextBox.Text = title;
       DirectorTextBox.Text = director;
