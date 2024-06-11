@@ -23,5 +23,24 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         _httpClient = new HttpClient();
+        LoadVideos();
+    }
+
+    private async void LoadVideos()
+    {
+        try
+        {
+            var videos = await _httpClient.GetFromJsonAsync<List<Video>>("http://localhost:5000/api/videos");
+            VideoDataGrid.ItemsSource = videos;
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error: {ex.Message}");
+        }
+    }
+
+    private void AddButton_Click(object sender, RoutedEventArgs e)
+    {
+        MessageBox.Show("Add button clicked!");
     }
 }

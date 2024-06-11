@@ -19,6 +19,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*"/>
+                <DataGridTextColumn Header="Year" Binding="{Binding Year}" Width="100"/>
+                <DataGridTextColumn Header="Rate" Binding="{Binding Rate}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
