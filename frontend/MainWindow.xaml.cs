@@ -25,15 +25,15 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         _httpClient = new HttpClient();
-        LoadVideos();
+        LoadFilms();
     }
 
-    private async void LoadVideos()
+    private async void LoadFilms()
     {
         try
         {
-            var videos = await _httpClient.GetFromJsonAsync<List<Video>>("http://localhost:5043/api/videos");
-            VideoDataGrid.ItemsSource = videos;
+            var films = await _httpClient.GetFromJsonAsync<List<Film>>("http://localhost:5043/api/films");
+            FilmDataGrid.ItemsSource = films;
         }
         catch (Exception ex)
         {
@@ -46,13 +46,13 @@ public partial class MainWindow : Window
         EditorWindow editorWindow = new EditorWindow();
         if (editorWindow.ShowDialog() == true)
         {
-            LoadVideos();
+            LoadFilms();
         }
     }
 
     private void RefreshButton_Click(object sender, RoutedEventArgs e)
     {
-        LoadVideos();
+        LoadFilms();
     }
 
     private async void DownloadButton_Click(object sender, RoutedEventArgs e)
@@ -60,7 +60,7 @@ public partial class MainWindow : Window
         try
         {
             await _httpClient.PostAsync("http://localhost:5043/api/PullFromAPI/", null);
-            LoadVideos();
+            LoadFilms();
         }
         catch (Exception ex)
         {
@@ -70,30 +70,30 @@ public partial class MainWindow : Window
 
     private void EditButton_Click(object sender, RoutedEventArgs e)
     {
-        var video = (sender as Button).DataContext as Video;
-        if (video == null) return;
+        var film = (sender as Button).DataContext as Film;
+        if (film == null) return;
 
         EditorWindow editorWindow = new EditorWindow(
-            video.Id,
-            video.Title,
-            video.Director,
-            video.Year,
-            video.Rate
+            film.Id,
+            film.Title,
+            film.Director,
+            film.Year,
+            film.Rate
         );
 
         if (editorWindow.ShowDialog() == true)
         {
-            LoadVideos();
+            LoadFilms();
         }
     }
 
     private async void DeleteButton_Click(object sender, RoutedEventArgs e)
     {
-        var video = (sender as Button).DataContext as Video;
-        if (video != null)
+        var film = (sender as Button).DataContext as Film;
+        if (film != null)
         {
             MessageBoxResult res = MessageBox.Show(
-                $"Delete film {video.Title}?",
+                $"Delete film {film.Title}?",
                 "Confirm",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question
@@ -103,8 +103,8 @@ public partial class MainWindow : Window
             {
                 try
                 {
-                    await _httpClient.DeleteAsync($"http://localhost:5043/api/Videos/{video.Id}");
-                    LoadVideos();
+                    await _httpClient.DeleteAsync($"http://localhost:5043/api/Films/{film.Id}");
+                    LoadFilms();
                 }
                 catch (Exception ex)
                 {

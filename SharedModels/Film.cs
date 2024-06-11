@@ -1,6 +1,6 @@
 namespace SharedModels
 {
-  public class Video
+  public class Film
   {
     public int Id { get; set; }
     public int? ImportId { get; set; }

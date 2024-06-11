@@ -13,7 +13,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="FilmFetcher | Videos" FontSize="24" FontWeight="Bold" Margin="10" />
+        <TextBlock Text="FilmFetcher | Films" FontSize="24" FontWeight="Bold" Margin="10" />
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
             <Button Content="Add" Width="100" Margin="10" Click="AddButton_Click" />
@@ -21,7 +21,7 @@
             <Button Content="Download" Width="100" Margin="10" Click="DownloadButton_Click" />
         </StackPanel>
 
-        <DataGrid x:Name="VideoDataGrid" AutoGenerateColumns="False" Grid.Row="2" Margin="10" CanUserAddRows="False">
+        <DataGrid x:Name="FilmDataGrid" AutoGenerateColumns="False" Grid.Row="2" Margin="10" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
                 <DataGridTextColumn Header="Director" Binding="{Binding Director}" Width="*"/>

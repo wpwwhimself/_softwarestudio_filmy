@@ -59,7 +59,7 @@ namespace frontend
 
       try
       {
-        Video video = new Video
+        Film film = new Film
         {
           Title = FilmTitle,
           Director = Director,
@@ -69,17 +69,17 @@ namespace frontend
 
         var res = (Id == null)
           ? await httpClient.PostAsync(
-            "http://localhost:5043/api/Videos",
+            "http://localhost:5043/api/Films",
             new StringContent(
-              JsonSerializer.Serialize(video),
+              JsonSerializer.Serialize(film),
               Encoding.UTF8,
               "application/json"
             )
           )
           : await httpClient.PutAsync(
-            $"http://localhost:5043/api/Videos/{Id}",
+            $"http://localhost:5043/api/Films/{Id}",
             new StringContent(
-              JsonSerializer.Serialize(video),
+              JsonSerializer.Serialize(film),
               Encoding.UTF8,
               "application/json"
             )

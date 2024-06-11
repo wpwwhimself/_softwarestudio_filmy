@@ -27,20 +27,20 @@ namespace api.Controllers
 
       try
       {
-        var videos = await _httpClient.GetFromJsonAsync<List<MyMoviesMovie>>("https://filmy.programdemo.pl/MyMovies");
+        var films = await _httpClient.GetFromJsonAsync<List<MyMoviesMovie>>("https://filmy.programdemo.pl/MyMovies");
 
-        foreach (var video in videos)
+        foreach (var film in films)
         {
-          Video? existingVideo = _context.Videos.Where(ev => ev.ImportId == video.id).FirstOrDefault();
-          if (existingVideo == null)
+          Film? existingFilm = _context.Films.Where(ev => ev.ImportId == film.id).FirstOrDefault();
+          if (existingFilm == null)
           {
-            _context.Videos.Add(new Video
+            _context.Films.Add(new Film
             {
-              Title = video.title,
-              Director = video.director,
-              Year = video.year,
-              Rate = video.rate,
-              ImportId = video.id
+              Title = film.title,
+              Director = film.director,
+              Year = film.year,
+              Rate = film.rate,
+              ImportId = film.id
             });
           }
         }
