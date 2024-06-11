@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.Data;
-using api.Models;
+using SharedModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,7 +34,7 @@ namespace api.Controllers
 
       if (video == null)
       {
-          return NotFound();
+        return NotFound();
       }
 
       return video;
