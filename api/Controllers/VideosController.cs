@@ -54,30 +54,20 @@ namespace api.Controllers
     [HttpPut("{id}")]
     public async Task<IActionResult> PutVideo(int id, Video video)
     {
-      if (id != video.Id)
+      Video existingVideo = await _context.Videos.FindAsync(id);
+      if (existingVideo == null)
       {
-        return BadRequest();
+        return NotFound();
       }
 
-      _context.Entry(video).State = EntityState.Modified;
+      existingVideo.Title = video.Title;
+      existingVideo.Director = video.Director;
+      existingVideo.Year = video.Year;
+      existingVideo.Rate = video.Rate;
 
-      try
-      {
-        await _context.SaveChangesAsync();
-      }
-      catch (DbUpdateConcurrencyException)
-      {
-        if (!VideoExists(id))
-        {
-          return NotFound();
-        }
-        else
-        {
-          throw;
-        }
-      }
+      await _context.SaveChangesAsync();
 
-      return NoContent();
+      return Ok(existingVideo);
     }
 
     // DELETE: api/Videos/5
@@ -93,12 +83,7 @@ namespace api.Controllers
       _context.Videos.Remove(video);
       await _context.SaveChangesAsync();
 
-      return NoContent();
-    }
-
-    private bool VideoExists(int id)
-    {
-      return _context.Videos.Any(e => e.Id == id);
+      return Ok();
     }
   }
 }

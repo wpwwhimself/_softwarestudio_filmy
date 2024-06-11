@@ -43,7 +43,11 @@ public partial class MainWindow : Window
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
-        MessageBox.Show("Add button clicked!");
+        EditorWindow editorWindow = new EditorWindow();
+        if (editorWindow.ShowDialog() == true)
+        {
+            LoadVideos();
+        }
     }
 
     private void RefreshButton_Click(object sender, RoutedEventArgs e)
@@ -58,16 +62,26 @@ public partial class MainWindow : Window
 
     private void EditButton_Click(object sender, RoutedEventArgs e)
     {
-        var video = (Video)VideoDataGrid.SelectedItem;
-        if (video != null)
+        var video = (sender as Button).DataContext as Video;
+        if (video == null) return;
+
+        EditorWindow editorWindow = new EditorWindow(
+            video.Id,
+            video.Title,
+            video.Director,
+            video.Year,
+            video.Rate
+        );
+        
+        if (editorWindow.ShowDialog() == true)
         {
-            MessageBox.Show($"Edit button clicked for {video.Title}");
+            LoadVideos();
         }
     }
 
     private void DeleteButton_Click(object sender, RoutedEventArgs e)
     {
-        var video = (Video)VideoDataGrid.SelectedItem;
+        var video = (sender as Button).DataContext as Video;
         if (video != null)
         {
             MessageBox.Show($"Delete button clicked for {video.Title}");
