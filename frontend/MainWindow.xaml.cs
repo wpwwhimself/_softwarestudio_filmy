@@ -55,9 +55,17 @@ public partial class MainWindow : Window
         LoadVideos();
     }
 
-    private void DownloadButton_Click(object sender, RoutedEventArgs e)
+    private async void DownloadButton_Click(object sender, RoutedEventArgs e)
     {
-
+        try
+        {
+            await _httpClient.PostAsync("http://localhost:5043/api/PullFromAPI/", null);
+            LoadVideos();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error: {ex.Message}");
+        }
     }
 
     private void EditButton_Click(object sender, RoutedEventArgs e)
