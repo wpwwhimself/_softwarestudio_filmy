@@ -1,6 +1,4 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
 
 namespace frontend;
 
@@ -9,5 +7,13 @@ namespace frontend;
 /// </summary>
 public partial class App : Application
 {
+  public static string ApiUrl { get; set; }
+
+    protected override void OnStartup(StartupEventArgs e)
+    {
+      base.OnStartup(e);
+
+      ApiUrl = "http://localhost:5043/api/";
+    }
 }
 

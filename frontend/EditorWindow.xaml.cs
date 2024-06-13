@@ -1,3 +1,4 @@
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -40,9 +41,8 @@ namespace frontend
     private async void SaveButton_Click(object sender, RoutedEventArgs e)
     {
       // validate inputs
-      List<string> errorTexts = new List<string>();
-      List<ValidationCase> validationCases = new List<ValidationCase>
-      {
+      List<string> errorTexts = [];
+      List<ValidationCase> validationCases = [
         new ValidationCase {
           Label = "Rok musi znajdować się w przedziale 1900 do 2200",
           Case = Year < 1900 || Year > 2200
@@ -55,7 +55,7 @@ namespace frontend
           Label = "Tytuł musi być krótszy niż 200 znaków",
           Case = FilmTitle.Length > 200
         },
-      };
+      ];
       foreach (ValidationCase vCase in validationCases)
       {
         if (vCase.Case)
@@ -87,7 +87,7 @@ namespace frontend
 
         var res = (Id == null)
           ? await httpClient.PostAsync(
-            "http://localhost:5043/api/Films",
+            App.ApiUrl + "Films",
             new StringContent(
               JsonSerializer.Serialize(film),
               Encoding.UTF8,
@@ -95,7 +95,7 @@ namespace frontend
             )
           )
           : await httpClient.PutAsync(
-            $"http://localhost:5043/api/Films/{Id}",
+            App.ApiUrl + $"Films/{Id}",
             new StringContent(
               JsonSerializer.Serialize(film),
               Encoding.UTF8,

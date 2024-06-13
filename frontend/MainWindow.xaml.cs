@@ -1,15 +1,7 @@
 ﻿using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using SharedModels;
 
 namespace frontend;
@@ -32,7 +24,7 @@ public partial class MainWindow : Window
     {
         try
         {
-            var films = await _httpClient.GetFromJsonAsync<List<Film>>("http://localhost:5043/api/films");
+            var films = await _httpClient.GetFromJsonAsync<List<Film>>(App.ApiUrl + "films");
             FilmDataGrid.ItemsSource = films;
         }
         catch (Exception ex)
@@ -54,7 +46,7 @@ public partial class MainWindow : Window
     {
         try
         {
-            await _httpClient.PostAsync("http://localhost:5043/api/PullFromAPI/", null);
+            await _httpClient.PostAsync(App.ApiUrl + "PullFromAPI/", null);
             LoadFilms();
         }
         catch (Exception ex)
@@ -88,8 +80,8 @@ public partial class MainWindow : Window
         if (film != null)
         {
             MessageBoxResult res = MessageBox.Show(
-                $"Delete film {film.Title}?",
-                "Confirm",
+                $"Usunąć film {film.Title}?",
+                "Potwierdź operację",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question
             );
@@ -98,7 +90,7 @@ public partial class MainWindow : Window
             {
                 try
                 {
-                    await _httpClient.DeleteAsync($"http://localhost:5043/api/Films/{film.Id}");
+                    await _httpClient.DeleteAsync(App.ApiUrl + $"Films/{film.Id}");
                     LoadFilms();
                 }
                 catch (Exception ex)
