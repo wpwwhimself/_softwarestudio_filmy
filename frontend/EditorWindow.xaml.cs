@@ -2,6 +2,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Windows;
+using frontend.Models;
 using SharedModels;
 
 namespace frontend
@@ -39,21 +40,38 @@ namespace frontend
     private async void SaveButton_Click(object sender, RoutedEventArgs e)
     {
       // validate inputs
-      if (Year < 1900 || Year > 2200)
+      List<string> errorTexts = new List<string>();
+      List<ValidationCase> validationCases = new List<ValidationCase>
       {
-        MessageBox.Show("Rok musi znajdować się w przedziale 1900 do 2200", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        return;
+        new ValidationCase {
+          Label = "Rok musi znajdować się w przedziale 1900 do 2200",
+          Case = Year < 1900 || Year > 2200
+        },
+        new ValidationCase {
+          Label = "Tytuł nie może być pusty",
+          Case = FilmTitle == string.Empty
+        },
+        new ValidationCase {
+          Label = "Tytuł musi być krótszy niż 200 znaków",
+          Case = FilmTitle.Length > 200
+        },
+      };
+      foreach (ValidationCase vCase in validationCases)
+      {
+        if (vCase.Case)
+        {
+          errorTexts.Add(vCase.Label);
+        }
       }
 
-      if (FilmTitle == string.Empty)
+      if (errorTexts.Count > 0)
       {
-        MessageBox.Show("Tytuł nie może być pusty", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        return;
-      }
-
-      if (FilmTitle.Length > 200)
-      {
-        MessageBox.Show("Tytuł musi być krótszy niż 200 znaków", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        MessageBox.Show(
+          string.Join("\n", new List<string> { "Formularz zawiera błędy:" }.Concat(errorTexts)),
+          "Błąd",
+          MessageBoxButton.OK,
+          MessageBoxImage.Error
+        );
         return;
       }
 
@@ -93,7 +111,7 @@ namespace frontend
       }
       catch (Exception ex)
       {
-        MessageBox.Show($"Błąd: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        MessageBox.Show($"Błąd: {ex.Message}", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
       }
     }
 
