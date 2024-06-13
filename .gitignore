@@ -71,9 +71,6 @@ appsettings*.json
 *.ide
 **/Properties/launchSettings.json
 
-# Entity Framework Migrations
-Migrations/
-
 # Packages
 *.nupkg
 *.snupkg
