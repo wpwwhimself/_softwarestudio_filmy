@@ -41,19 +41,19 @@ namespace frontend
       // validate inputs
       if (Year < 1900 || Year > 2200)
       {
-        MessageBox.Show("Year must be between 1900 and 2200", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        MessageBox.Show("Rok musi znajdować się w przedziale 1900 do 2200", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         return;
       }
 
       if (FilmTitle == string.Empty)
       {
-        MessageBox.Show("Title cannot be empty", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        MessageBox.Show("Tytuł nie może być pusty", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         return;
       }
 
       if (FilmTitle.Length > 200)
       {
-        MessageBox.Show("Title cannot be longer than 200 characters", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        MessageBox.Show("Tytuł musi być krótszy niż 200 znaków", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         return;
       }
 
@@ -93,7 +93,7 @@ namespace frontend
       }
       catch (Exception ex)
       {
-        MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        MessageBox.Show($"Błąd: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
       }
     }
 

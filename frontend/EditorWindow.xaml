@@ -1,19 +1,19 @@
 <Window x:Class="frontend.EditorWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Edit Film" Height="300" Width="400">
+        Height="300" Width="400">
     <Grid>
         <StackPanel Margin="10">
-            <TextBlock Text="Title" />
+            <TextBlock Text="Tytuł" />
             <TextBox x:Name="TitleTextBox" Margin="0,0,0,10"/>
             
-            <TextBlock Text="Director" />
+            <TextBlock Text="Reżyser" />
             <TextBox x:Name="DirectorTextBox" Margin="0,0,0,10"/>
             
-            <TextBlock Text="Year" />
+            <TextBlock Text="Rok" />
             <TextBox x:Name="YearTextBox" Margin="0,0,0,10"/>
             
-            <TextBlock Text="Rate" />
+            <TextBlock Text="Ocena" />
             <TextBox x:Name="RateTextBox" Margin="0,0,0,10"/>
             
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

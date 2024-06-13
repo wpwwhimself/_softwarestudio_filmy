@@ -37,7 +37,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error: {ex.Message}");
+            MessageBox.Show($"Błąd: {ex.Message}");
         }
     }
 
@@ -50,11 +50,6 @@ public partial class MainWindow : Window
         }
     }
 
-    private void RefreshButton_Click(object sender, RoutedEventArgs e)
-    {
-        LoadFilms();
-    }
-
     private async void DownloadButton_Click(object sender, RoutedEventArgs e)
     {
         try
@@ -64,7 +59,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Error: {ex.Message}");
+            MessageBox.Show($"Błąd: {ex.Message}");
         }
     }
 
@@ -108,7 +103,7 @@ public partial class MainWindow : Window
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error: {ex.Message}");
+                    MessageBox.Show($"Błąd: {ex.Message}");
                 }
             }
         }
