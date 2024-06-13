@@ -1,75 +1,11 @@
-# .NET
-*.dll
-*.exe
-*.pdb
-*.cache
-*.config
-*.log
-*.user
-*.lock
-*.vspscc
-*.vssscc
-.vscode/
-.vs/
-*_ReSharper.*
-_ReSharper.Caches
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-
 # Build directories
 bin/
 obj/
 [Bb]in/
 [Oo]bj/
 
-# Azure DevOps
-.vsts/
-
-# User-specific files
-*.rsuser
-.idea/
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-
-# Auto-generated files
-Generated\_Code/
-
 # Logs
 *.log
-npm-debug.log*
-
-# OS-specific files
-Thumbs.db
-ehthumbs.db
-.DS_Store
-*.DS_Store
-.AppleDouble
-.LSOverride
-Icon
-._*
-
-# Visual Studio Code
-.vscode/
-
-# Rider
-.idea/
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-.idea/
-*.resharper
-*.DotSettings.user
-.ReSharper/
-
-# ASP.NET Core
-appsettings*.json
-*.ide
-**/Properties/launchSettings.json
 
 # Packages
 *.nupkg
